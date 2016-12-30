@@ -18,5 +18,36 @@ const Board = function ({columns: width = 0, rows: height = 0}) {
   this.cells = buildGrid(width, height)
 }
 
+Board.prototype.cellValue = function ({x, y}) {
+  const cell = this.cells[x][y]
+  const neighbours = []
+
+  neighbours.push(this.cells[x][y + 1])
+  neighbours.push(this.cells[x][y - 1])
+
+  const previousColumnExists = (this.cells[x - 1] != null)
+  const nextColumnExists = (this.cells[x + 1] != null)
+  
+  if (previousColumnExists) {
+    neighbours.push(this.cells[x - 1][y + 1])
+    neighbours.push(this.cells[x - 1][y])
+    neighbours.push(this.cells[x - 1][y - 1])
+  }
+
+  if (nextColumnExists) {
+    neighbours.push(this.cells[x + 1][y + 1])
+    neighbours.push(this.cells[x + 1][y])
+    neighbours.push(this.cells[x + 1][y - 1])
+  }
+  
+  const existingNeighbours = neighbours.filter(cell => cell != null)
+
+  const cellValue = existingNeighbours
+    .map(cell => cell.alive ? 1 : 0)
+    .reduce((memo, current) => memo + current, 0)
+  cell.value = cellValue
+  return cellValue
+}
+
 export {buildGrid}
 export default Board

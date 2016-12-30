@@ -7,6 +7,7 @@ const Cell = function ({x, y, alive}) {
   this.x = x
   this.y = y
   this.alive = (alive != null) ? alive : randomBoolean()
+  this.value = null
 }
 
 export default Cell
