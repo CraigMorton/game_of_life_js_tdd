@@ -2,9 +2,9 @@ import Cell from './Cell.js'
 
 const buildGrid = function (width, height) {
   const cells = []
-  for (let y = height; y >= 1; y--) {
+  for (let x = 0; x < width; x++) {
     let row = []
-    for (let x = 1; x <= width; x++) {
+    for (let y = 0; y < height; y++) {
       row.push(new Cell({x, y}))
     }
     cells.push(row)
