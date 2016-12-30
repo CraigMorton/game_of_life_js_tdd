@@ -1,5 +1,6 @@
 import {assert} from 'chai'
 import Board from '../src/Board.js'
+import {buildGrid} from '../src/Board.js'
 
 describe('Board', () => {
   
@@ -13,17 +14,22 @@ describe('Board', () => {
     assert.isArray(board.cells[0])
   })
 
+})
+
+describe('buildGrid function', () => {
+  
   it('should create first Cell with appropriate x and y values', () => {
-    const board = new Board({columns: 5, rows: 5})
-    const firstCell = board.cells[0][0]
+    const cells = buildGrid(5, 5)
+    const firstCell = cells[0][0]
     assert.equal(1, firstCell.x)
     assert.equal(5, firstCell.y)
   })
 
   it('should create last Cell with appropriate x and y values', () => {
-    const board = new Board({columns: 5, rows: 5})
-    const lastCell = board.cells[4][4]
+    const cells = buildGrid(5, 5)
+    const lastCell = cells[4][4]
     assert.equal(5, lastCell.x)
     assert.equal(1, lastCell.y)
   })
+
 })
