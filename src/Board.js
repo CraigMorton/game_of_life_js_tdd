@@ -7,7 +7,7 @@ const Board = function ({columns: width = 0, rows: height = 0}) {
   for (let y = height; y >= 1; y--) {
     let row = []
     for (let x = 1; x <= width; x++) {
-      row.push(new Cell(x, y))
+      row.push(new Cell({x, y}))
     }
     this.cells.push(row)
   }

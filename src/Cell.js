@@ -3,7 +3,7 @@ const randomBoolean = function () {
   return (randomNum === 1)
 }
 
-const Cell = function (x, y, alive) {
+const Cell = function ({x, y, alive}) {
   this.x = x
   this.y = y
   this.alive = (alive != null) ? alive : randomBoolean()
