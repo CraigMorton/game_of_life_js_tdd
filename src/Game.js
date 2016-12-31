@@ -1,4 +1,5 @@
-const Game = function () {
+const Game = function (board) {
+  this.board = board
   this.turns = 0
 }
 
