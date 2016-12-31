@@ -39,7 +39,7 @@ Board.prototype.cellValue = function ({x, y}) {
     neighbours.push(this.cells[x + 1][y])
     neighbours.push(this.cells[x + 1][y - 1])
   }
-  
+
   const existingNeighbours = neighbours.filter(cell => cell != null)
 
   const cellValue = existingNeighbours
@@ -47,6 +47,14 @@ Board.prototype.cellValue = function ({x, y}) {
     .reduce((memo, current) => memo + current, 0)
   cell.value = cellValue
   return cellValue
+}
+
+Board.prototype.cellValues = function () {
+  this.cells
+    .forEach(column => column
+      .forEach(cell => {
+        this.cellValue({x: cell.x, y: cell.y})
+      }))
 }
 
 export {buildGrid}

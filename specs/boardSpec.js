@@ -43,6 +43,24 @@ describe('Board', () => {
     assert.equal(3, board.cells[0][0].value)
   })
 
+  it('should calculate all cellValues', () => {
+    const board = new Board({columns: 5, rows: 5})
+    assert.equal(null, board.cells[1][1].value)
+    assert.equal(null, board.cells[2][2].value)
+    assert.equal(null, board.cells[3][3].value)
+
+    board.cells.forEach(column => 
+      column.forEach(cell => {
+        cell.alive = true
+      })
+    )
+    board.cellValues()
+    
+    assert.equal(8, board.cells[1][1].value)
+    assert.equal(8, board.cells[2][2].value)
+    assert.equal(8, board.cells[3][3].value)
+  })
+
 })
 
 describe('buildGrid function', () => {
