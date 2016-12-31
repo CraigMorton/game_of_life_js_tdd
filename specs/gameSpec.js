@@ -7,4 +7,9 @@ describe('Game', () => {
     assert.isObject(new Game())
   })
 
+  it('should have a turn counter', () => {
+    const game = new Game()
+    assert.equal(0, game.turns)
+  })
+
 })
