@@ -50,11 +50,9 @@ Board.prototype.cellValue = function ({x, y}) {
 }
 
 Board.prototype.cellValues = function () {
-  this.cells
-    .forEach(column => column
-      .forEach(cell => {
-        this.cellValue({x: cell.x, y: cell.y})
-      }))
+  this.allCells().forEach(cell => {
+    this.cellValue({x: cell.x, y: cell.y})
+  })
 }
 
 Board.prototype.allCells = function () {
