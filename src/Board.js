@@ -57,5 +57,9 @@ Board.prototype.cellValues = function () {
       }))
 }
 
+Board.prototype.allCells = function () {
+  return this.cells.reduce((memo, currentColumn) => [...memo, ...currentColumn], [])
+}
+
 export {buildGrid}
 export default Board

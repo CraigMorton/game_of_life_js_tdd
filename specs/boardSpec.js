@@ -1,6 +1,7 @@
 import {assert} from 'chai'
 import Board from '../src/Board.js'
 import {buildGrid} from '../src/Board.js'
+import Cell from '../src/Cell.js'
 
 describe('Board', () => {
   
@@ -59,6 +60,21 @@ describe('Board', () => {
     assert.equal(8, board.cells[1][1].value)
     assert.equal(8, board.cells[2][2].value)
     assert.equal(8, board.cells[3][3].value)
+  })
+
+  it('should return flattened array of all cells', () => {
+    const board = new Board({columns: 2, rows: 2})
+    const expected = [
+      new Cell({x: 0, y: 0, alive: true}),
+      new Cell({x: 0, y: 1, alive: true}),
+      new Cell({x: 1, y: 0, alive: true}),
+      new Cell({x: 1, y: 1, alive: true})
+    ]
+    const actual = board.allCells()
+    actual.forEach(cell => {
+      cell.alive = true
+    })
+    assert.deepEqual(expected, actual)
   })
 
 })
