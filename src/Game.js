@@ -19,4 +19,10 @@ Game.prototype.tickCell = function (cell) {
   cell.alive = isCellAlive[value]
 }
 
+Game.prototype.tickCells = function () {
+  this.board.allCells().forEach(cell => {
+    this.tickCell(cell)
+  })
+}
+
 export default Game

@@ -69,5 +69,43 @@ describe('Game', () => {
     game.tickCell(cell)
     assert.equal(false, cell.alive)
   })
+
+  it('should tick all Cells in turn -- 2x2', () => {
+    const board = new Board({rows: 2, columns: 2})
+    board.allCells().forEach(cell => {
+      cell.alive = true
+    })
+    board.cells[1][1].alive = false
+    const game = new Game(board)
+    game.tickCells()
+    assert.equal(true, game.board.cells[0][1].alive)
+    assert.equal(true, game.board.cells[0][1].alive)
+    assert.equal(true, game.board.cells[1][0].alive)
+    assert.equal(true, game.board.cells[1][1].alive)
+  })
+
+  it('should tick all Cells in turn -- 3x3', () => {
+    const board = new Board({rows: 3, columns: 3})
+    board.allCells().forEach(cell => {
+      cell.alive = true
+    })
+
+    board.cells[0][2].alive = false
+    board.cells[2][0].alive = false
+    board.cells[2][2].alive = false
+    const game = new Game(board)
+    board.cellValues()
+    game.tickCells()
+    assert.equal(true, game.board.cells[0][0].alive)
+    assert.equal(false, game.board.cells[0][1].alive)
+    assert.equal(true, game.board.cells[0][2].alive)
+    assert.equal(false, game.board.cells[1][0].alive)
+    assert.equal(false, game.board.cells[1][1].alive)
+    assert.equal(true, game.board.cells[1][2].alive)
+    assert.equal(true, game.board.cells[2][0].alive)
+    assert.equal(true, game.board.cells[2][1].alive)
+    assert.equal(true, game.board.cells[2][2].alive)
+
+  })
   
 })
